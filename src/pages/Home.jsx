@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Droplet, Target, DollarSign } from 'lucide-react';
+import { ArrowRight, Droplet, Target, DollarSign, City, Pipe, WaterWave } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Water Distribution Optimization
+            🏙️ Optimize Urban Water Flow Using Smart Algorithms
           </h1>
           <p className="text-xl text-gray-600">
             Smart city solutions for efficient water resource management
@@ -119,6 +119,64 @@ const Home = () => {
           </div>
         </div>
         
+        {/* Three-step guide section */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <h2 className="text-2xl font-semibold text-water-dark mb-6 text-center">
+            How to Optimize Your Water Network in Three Simple Steps
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-6">
+            <div className="bg-water-light bg-opacity-20 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-water flex items-center justify-center mb-4 mx-auto">
+                <span className="text-white text-2xl font-bold">1</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Upload/Enter Your Water Network
+              </h3>
+              <p className="text-gray-700">
+                Define your water distribution system by entering locations and pipeline connections with their capacities or costs.
+              </p>
+              <Pipe className="h-8 w-8 text-water mx-auto mt-4" />
+            </div>
+            
+            <div className="bg-water-light bg-opacity-20 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-water flex items-center justify-center mb-4 mx-auto">
+                <span className="text-white text-2xl font-bold">2</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Select the Optimization Method
+              </h3>
+              <p className="text-gray-700">
+                Choose between water flow maximization, cost-effective pipeline design, or efficient water routing algorithms.
+              </p>
+              <WaterWave className="h-8 w-8 text-water mx-auto mt-4" />
+            </div>
+            
+            <div className="bg-water-light bg-opacity-20 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-water flex items-center justify-center mb-4 mx-auto">
+                <span className="text-white text-2xl font-bold">3</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                View Optimization Results
+              </h3>
+              <p className="text-gray-700">
+                Get detailed recommendations for flow improvements, cost reductions, or optimal routing through your network.
+              </p>
+              <City className="h-8 w-8 text-water mx-auto mt-4" />
+            </div>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <Link
+              to="/algorithms"
+              className="inline-flex items-center px-6 py-3 bg-water hover:bg-water-dark text-white font-medium rounded-lg transition-colors"
+            >
+              Start Optimizing Your Water Network
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+        
         {/* How to use section */}
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <h2 className="text-2xl font-semibold text-water-dark mb-4">
@@ -135,7 +193,7 @@ const Home = () => {
                   Define Your Water Network
                 </h3>
                 <p className="text-gray-600">
-                  Input the nodes (representing water sources, junctions, and destinations) and edges (representing pipes with capacity, cost, or distance) of your water distribution network.
+                  Input the locations (representing water sources, junctions, tanks, and pumps) and pipelines (with capacity, cost, or distance) of your water distribution network.
                 </p>
               </div>
             </div>
@@ -146,15 +204,15 @@ const Home = () => {
               </div>
               <div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  Choose an Optimization Algorithm
+                  Choose an Optimization Method
                 </h3>
                 <p className="text-gray-600">
-                  Select one of our three algorithms depending on your needs:
+                  Select one of our three optimization methods depending on your needs:
                 </p>
                 <ul className="list-disc list-inside ml-4 mt-2 text-gray-600">
-                  <li><strong>Ford-Fulkerson</strong>: Maximize water flow through your network</li>
-                  <li><strong>Minimum Spanning Tree</strong>: Minimize infrastructure costs</li>
-                  <li><strong>Dijkstra's</strong>: Find shortest paths for water delivery</li>
+                  <li><strong>Optimize Water Flow</strong>: Maximize water flow through your network</li>
+                  <li><strong>Cost-Effective Pipeline Design</strong>: Minimize infrastructure costs</li>
+                  <li><strong>Efficient Water Routing</strong>: Find shortest paths for water delivery</li>
                 </ul>
               </div>
             </div>
