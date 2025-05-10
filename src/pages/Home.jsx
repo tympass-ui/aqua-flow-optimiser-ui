@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Droplet, Target, DollarSign } from 'lucide-react';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
 
 const Home = () => {
   return (
@@ -16,6 +17,109 @@ const Home = () => {
           </p>
         </div>
         
+        {/* Hero section with overview */}
+        <div className="bg-water-light bg-opacity-30 rounded-lg p-6 mb-10">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Our Water Management Dashboard Can Help You
+          </h2>
+          <p className="text-lg text-gray-700">
+            Our water management dashboard goes beyond basic data presentation. It provides a comprehensive view of your 
+            network's health with sensor data analysis, allowing you to make informed decisions about your water distribution system.
+          </p>
+        </div>
+        
+        {/* Key features section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
+            Key Monitoring Features
+          </h2>
+          
+          <div className="space-y-6">
+            <Card className="border-l-4 border-l-water">
+              <CardHeader className="pb-2">
+                <div className="flex items-center">
+                  <div className="bg-water-light rounded-full h-12 w-12 flex items-center justify-center mr-4">
+                    <span className="text-water-dark text-2xl font-bold">01</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">Monitor Flow and Pressure</h3>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700">
+                  See water flow rates and levels across your network. This allows for quick identification 
+                  of areas with unusual flow patterns or low pressure, potentially indicating leaks or blockages.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-l-4 border-l-water">
+              <CardHeader className="pb-2">
+                <div className="flex items-center">
+                  <div className="bg-water-light rounded-full h-12 w-12 flex items-center justify-center mr-4">
+                    <span className="text-water-dark text-2xl font-bold">02</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">Network Optimization</h3>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700">
+                  Apply powerful graph algorithms to optimize your water distribution network, finding the most efficient 
+                  paths, minimizing costs, and maximizing flow to all areas of your system.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Benefits section */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+            Benefits of Water Management Dashboard
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="p-6">
+                <div className="w-16 h-16 rounded-full bg-water-light flex items-center justify-center mb-4 mx-auto">
+                  <Droplet className="h-8 w-8 text-water" />
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-3">Minimize Water Loss</h3>
+                <p className="text-gray-600">
+                  Data from your water management dashboard helps you identify leaks and blockages quickly, preventing wasted 
+                  resources and saving on water bills.
+                </p>
+              </div>
+            </Card>
+            
+            <Card className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="p-6">
+                <div className="w-16 h-16 rounded-full bg-water-light flex items-center justify-center mb-4 mx-auto">
+                  <Target className="h-8 w-8 text-water" />
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-3">Targeted Maintenance</h3>
+                <p className="text-gray-600">
+                  Focus your repair and maintenance efforts on areas with problems, optimizing your team's time and resources, 
+                  leading to reduced overall maintenance costs.
+                </p>
+              </div>
+            </Card>
+            
+            <Card className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="p-6">
+                <div className="w-16 h-16 rounded-full bg-water-light flex items-center justify-center mb-4 mx-auto">
+                  <DollarSign className="h-8 w-8 text-water" />
+                </div>
+                <h3 className="text-xl font-semibold text-center mb-3">Optimize Spending</h3>
+                <p className="text-gray-600">
+                  Data-driven insights allow you to make informed decisions about infrastructure upgrades and maintenance 
+                  schedules, helping you prioritize investments.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+        
+        {/* How to use section */}
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <h2 className="text-2xl font-semibold text-water-dark mb-4">
             How to Use This Tool

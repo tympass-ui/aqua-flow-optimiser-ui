@@ -27,7 +27,7 @@ const App = () => (
             <Breadcrumbs />
             <main className="flex-grow">
               <Routes>
-                <Route path="/" element={<Navigate to="/algorithms" replace />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/algorithms" element={<Algorithms />} />
                 <Route path="/results" element={<Results />} />
