@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGraphContext } from '../contexts/GraphContext';
 import { fordFulkerson, primMST, dijkstra } from '../utils/graphAlgorithms';
 import { toast } from 'sonner';
-import { Droplet, Building, PipelineIcon } from 'lucide-react';
+import { Droplet, BarChart, CircuitBoard } from 'lucide-react';
 
 const Algorithms = () => {
   const navigate = useNavigate();
@@ -149,15 +149,15 @@ const Algorithms = () => {
     }
   };
   
-  // Get algorithm description
+  // Get algorithm icon
   const getAlgorithmIcon = (algorithm) => {
     switch(algorithm) {
       case 'fordFulkerson':
         return <Droplet className="h-6 w-6 text-water-dark mr-2" />;
       case 'mst':
-        return <PipelineIcon className="h-6 w-6 text-water-dark mr-2" />;
+        return <CircuitBoard className="h-6 w-6 text-water-dark mr-2" />;
       case 'dijkstra':
-        return <Building className="h-6 w-6 text-water-dark mr-2" />;
+        return <BarChart className="h-6 w-6 text-water-dark mr-2" />;
       default:
         return null;
     }
@@ -226,7 +226,7 @@ const Algorithms = () => {
           
           {selectedAlgorithm === 'mst' && (
             <div className="flex items-start">
-              <PipelineIcon className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
+              <CircuitBoard className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
               <div>
                 <h2 className="font-semibold text-lg mb-2">Cost-Effective Pipeline Design</h2>
                 <p>
@@ -239,7 +239,7 @@ const Algorithms = () => {
           
           {selectedAlgorithm === 'dijkstra' && (
             <div className="flex items-start">
-              <Building className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
+              <BarChart className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
               <div>
                 <h2 className="font-semibold text-lg mb-2">Efficient Water Routing</h2>
                 <p>

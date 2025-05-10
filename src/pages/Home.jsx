@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Droplet, Target, DollarSign, Building, PipelineIcon, Water } from 'lucide-react';
+import { ArrowRight, Droplet, Target, DollarSign, BarChart, CircuitBoard, Waves } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 
 const Home = () => {
@@ -136,7 +135,7 @@ const Home = () => {
               <p className="text-gray-700">
                 Define your water distribution system by entering locations and pipeline connections with their capacities or costs.
               </p>
-              <PipelineIcon className="h-8 w-8 text-water mx-auto mt-4" />
+              <CircuitBoard className="h-8 w-8 text-water mx-auto mt-4" />
             </div>
             
             <div className="bg-water-light bg-opacity-20 rounded-lg p-6 text-center">
@@ -149,7 +148,7 @@ const Home = () => {
               <p className="text-gray-700">
                 Choose between water flow maximization, cost-effective pipeline design, or efficient water routing algorithms.
               </p>
-              <Water className="h-8 w-8 text-water mx-auto mt-4" />
+              <Waves className="h-8 w-8 text-water mx-auto mt-4" />
             </div>
             
             <div className="bg-water-light bg-opacity-20 rounded-lg p-6 text-center">
@@ -162,7 +161,7 @@ const Home = () => {
               <p className="text-gray-700">
                 Get detailed recommendations for flow improvements, cost reductions, or optimal routing through your network.
               </p>
-              <Building className="h-8 w-8 text-water mx-auto mt-4" />
+              <BarChart className="h-8 w-8 text-water mx-auto mt-4" />
             </div>
           </div>
           
