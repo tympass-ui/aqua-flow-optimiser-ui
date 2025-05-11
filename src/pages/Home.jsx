@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Droplet, Target, DollarSign, Building, Water } from 'lucide-react';
+import { ArrowRight, Droplet, Target, DollarSign, Building } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 
 const Home = () => {
