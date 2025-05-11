@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/algorithms" className="flex items-center">
+            <Link to="/water-network-optimization" className="flex items-center">
               <div className="h-8 w-8 mr-2 bg-white rounded-full flex items-center justify-center">
                 <div className="h-6 w-6 bg-water animate-flow rounded-full"></div>
               </div>
@@ -27,12 +27,14 @@ const Navbar = () => {
           
           <nav className="flex space-x-4">
             <Link
-              to="/algorithms"
+              to="/water-network-optimization"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive('/algorithms') ? 'bg-water text-white' : 'hover:bg-water-light hover:text-water-dark'
+                isActive('/water-network-optimization') || isActive('/algorithms') 
+                  ? 'bg-water text-white' 
+                  : 'hover:bg-water-light hover:text-water-dark'
               }`}
             >
-              Algorithms
+              Water Network Optimization
             </Link>
             
             <Link

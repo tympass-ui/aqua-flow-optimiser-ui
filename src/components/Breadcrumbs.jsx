@@ -15,15 +15,27 @@ const Breadcrumbs = () => {
     
     if (paths.length > 0) {
       paths.forEach((path, index) => {
-        let name = path.charAt(0).toUpperCase() + path.slice(1);
+        let name = path;
         let fullPath = `/${paths.slice(0, index + 1).join('/')}`;
         
+        // Map URLs to user-friendly names
+        if (path === 'water-network-optimization' || path === 'algorithms') {
+          name = 'Water Network Optimization';
+          fullPath = '/water-network-optimization';
+        } else if (path === 'results') {
+          name = 'Results';
+        } else if (path === 'about') {
+          name = 'About';
+        } else {
+          name = path.charAt(0).toUpperCase() + path.slice(1);
+        }
+        
         // Special case for algorithms page to show selected algorithm
-        if (path === 'algorithms' && selectedAlgorithm) {
+        if ((path === 'water-network-optimization' || path === 'algorithms') && selectedAlgorithm) {
           const algorithmNames = {
-            fordFulkerson: 'Ford-Fulkerson',
-            mst: 'Minimum Spanning Tree',
-            dijkstra: 'Dijkstra\'s'
+            fordFulkerson: 'Optimize Water Flow',
+            mst: 'Cost-Effective Pipeline Design',
+            dijkstra: 'Efficient Water Routing'
           };
           breadcrumbs.push({ name, path: fullPath });
           breadcrumbs.push({ 

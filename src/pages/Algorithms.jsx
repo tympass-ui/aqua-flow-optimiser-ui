@@ -5,7 +5,7 @@ import { useGraphContext } from '../contexts/GraphContext';
 import { fordFulkerson, primMST, dijkstra } from '../utils/graphAlgorithms';
 import { toast } from 'sonner';
 
-const Algorithms = () => {
+const WaterNetworkOptimization = () => {
   const navigate = useNavigate();
   const { 
     processNodes, 
@@ -135,19 +135,33 @@ const Algorithms = () => {
     }
   };
   
+  // Get user-friendly algorithm names
+  const getAlgorithmDisplayName = (algorithm) => {
+    switch (algorithm) {
+      case 'fordFulkerson':
+        return 'Optimize Water Flow';
+      case 'mst':
+        return 'Cost-Effective Pipeline Design';
+      case 'dijkstra':
+        return 'Efficient Water Routing';
+      default:
+        return algorithm;
+    }
+  };
+  
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Optimization Algorithms</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Water Network Optimization</h1>
           <p className="text-gray-600 mt-2">
-            Select an algorithm and input your network data to optimize your water distribution system.
+            Select an optimization method and input your network data to optimize your water distribution system.
           </p>
         </div>
         
         {/* Algorithm Tabs */}
         <div className="mb-6 border-b border-gray-200">
-          <div className="flex space-x-2">
+          <div className="flex flex-wrap space-x-2">
             <button
               onClick={() => handleAlgorithmChange('fordFulkerson')}
               className={`py-2 px-4 text-sm font-medium rounded-t-lg ${
@@ -156,7 +170,7 @@ const Algorithms = () => {
                   : 'text-gray-600 hover:text-water-dark'
               }`}
             >
-              Ford-Fulkerson
+              Optimize Water Flow
             </button>
             <button
               onClick={() => handleAlgorithmChange('mst')}
@@ -166,7 +180,7 @@ const Algorithms = () => {
                   : 'text-gray-600 hover:text-water-dark'
               }`}
             >
-              Minimum Spanning Tree
+              Cost-Effective Pipeline Design
             </button>
             <button
               onClick={() => handleAlgorithmChange('dijkstra')}
@@ -176,7 +190,7 @@ const Algorithms = () => {
                   : 'text-gray-600 hover:text-water-dark'
               }`}
             >
-              Dijkstra's
+              Efficient Water Routing
             </button>
           </div>
         </div>
@@ -185,9 +199,9 @@ const Algorithms = () => {
         <div className="mb-6 p-4 bg-water-light rounded-lg text-gray-700">
           {selectedAlgorithm === 'fordFulkerson' && (
             <div>
-              <h2 className="font-semibold text-lg mb-2">Ford-Fulkerson Algorithm</h2>
+              <h2 className="font-semibold text-lg mb-2">Optimize Water Flow (Ford-Fulkerson)</h2>
               <p>
-                Optimizes the maximum flow of water through your network from a source to a sink.
+                Maximizes the flow of water through your network from a source to a destination.
                 Useful for determining the maximum capacity of your water distribution system.
               </p>
             </div>
@@ -195,7 +209,7 @@ const Algorithms = () => {
           
           {selectedAlgorithm === 'mst' && (
             <div>
-              <h2 className="font-semibold text-lg mb-2">Minimum Spanning Tree</h2>
+              <h2 className="font-semibold text-lg mb-2">Cost-Effective Pipeline Design (Minimum Spanning Tree)</h2>
               <p>
                 Finds the most cost-effective way to connect all nodes in your water network.
                 Ideal for planning new infrastructure or optimizing existing connections.
@@ -205,7 +219,7 @@ const Algorithms = () => {
           
           {selectedAlgorithm === 'dijkstra' && (
             <div>
-              <h2 className="font-semibold text-lg mb-2">Dijkstra's Algorithm</h2>
+              <h2 className="font-semibold text-lg mb-2">Efficient Water Routing (Dijkstra's Algorithm)</h2>
               <p>
                 Calculates the shortest path from a source to a destination in your water network.
                 Perfect for optimizing delivery routes or minimizing water transit time.
@@ -283,7 +297,7 @@ const Algorithms = () => {
               {selectedAlgorithm !== 'mst' && (
                 <div>
                   <label htmlFor="sink" className="block text-sm font-medium text-gray-700 mb-1">
-                    Sink Node
+                    Destination Node
                   </label>
                   <select
                     id="sink"
@@ -291,7 +305,7 @@ const Algorithms = () => {
                     onChange={(e) => setSinkNode(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-water"
                   >
-                    <option value="">Select a sink</option>
+                    <option value="">Select a destination</option>
                     {nodeOptions.map(node => (
                       <option key={`sink-${node}`} value={node}>{node}</option>
                     ))}
@@ -304,11 +318,11 @@ const Algorithms = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-6 py-2 bg-water hover:bg-water-dark text-white font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-water focus:ring-opacity-50 ${
+                className={`px-6 py-2 bg-water hover:bg-water-dark text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-water focus:ring-opacity-50 ${
                   isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >
-                {isSubmitting ? 'Computing...' : 'Run Algorithm'}
+                {isSubmitting ? 'Computing...' : 'Run Optimization'}
               </button>
             </div>
           </form>
@@ -318,4 +332,4 @@ const Algorithms = () => {
   );
 };
 
-export default Algorithms;
+export default WaterNetworkOptimization;

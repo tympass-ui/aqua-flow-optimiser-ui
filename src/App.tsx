@@ -8,7 +8,7 @@ import { GraphProvider } from "./contexts/GraphContext";
 import Navbar from "./components/Navbar";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Home from "./pages/Home";
-import Algorithms from "./pages/Algorithms";
+import WaterNetworkOptimization from "./pages/Algorithms";
 import Results from "./pages/Results";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -29,7 +29,8 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/algorithms" element={<Algorithms />} />
+                <Route path="/water-network-optimization" element={<WaterNetworkOptimization />} />
+                <Route path="/algorithms" element={<Navigate to="/water-network-optimization" replace />} />
                 <Route path="/results" element={<Results />} />
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
