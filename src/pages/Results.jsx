@@ -18,7 +18,7 @@ const Results = () => {
     if (!hasResults()) {
       navigate('/algorithms');
     }
-  }, [hasResults, navigate]);
+  }, [hasResults]);
   
   // Calculate a simple 2D position for each node (for visualization)
   const getNodePositions = () => {
@@ -41,7 +41,7 @@ const Results = () => {
   
   // Prepare data for visualizations
   const prepareGraphData = () => {
-    if (!hasResults() || !nodes.length) return { nodes: [], links: [] };
+    if (!hasResults()) return { nodes: [], links: [] };
     
     const nodePositions = getNodePositions();
     const graphNodes = Object.values(nodePositions);
@@ -49,62 +49,37 @@ const Results = () => {
     let graphLinks = [];
     switch (selectedAlgorithm) {
       case 'fordFulkerson':
-        if (!algorithmResults.fordFulkerson?.flowEdges) break;
-        
-        graphLinks = algorithmResults.fordFulkerson.flowEdges.map(edge => {
-          // Skip if source or target node positions don't exist
-          if (!nodePositions[edge.source] || !nodePositions[edge.target]) {
-            return null;
-          }
-          
-          return {
-            source: edge.source,
-            target: edge.target,
-            value: edge.flow,
-            sourceX: nodePositions[edge.source].x,
-            sourceY: nodePositions[edge.source].y,
-            targetX: nodePositions[edge.target].x,
-            targetY: nodePositions[edge.target].y,
-          };
-        }).filter(link => link !== null); // Remove any null links
+        graphLinks = algorithmResults.fordFulkerson.flowEdges.map(edge => ({
+          source: edge.source,
+          target: edge.target,
+          value: edge.flow,
+          sourceX: nodePositions[edge.source].x,
+          sourceY: nodePositions[edge.source].y,
+          targetX: nodePositions[edge.target].x,
+          targetY: nodePositions[edge.target].y,
+        }));
         break;
         
       case 'mst':
-        if (!algorithmResults.mst?.mstEdges) break;
-        
-        graphLinks = algorithmResults.mst.mstEdges.map(edge => {
-          // Skip if source or target node positions don't exist
-          if (!nodePositions[edge.source] || !nodePositions[edge.target]) {
-            return null;
-          }
-          
-          return {
-            source: edge.source,
-            target: edge.target,
-            value: edge.cost,
-            sourceX: nodePositions[edge.source].x,
-            sourceY: nodePositions[edge.source].y,
-            targetX: nodePositions[edge.target].x,
-            targetY: nodePositions[edge.target].y,
-          };
-        }).filter(link => link !== null); // Remove any null links
+        graphLinks = algorithmResults.mst.mstEdges.map(edge => ({
+          source: edge.source,
+          target: edge.target,
+          value: edge.cost,
+          sourceX: nodePositions[edge.source].x,
+          sourceY: nodePositions[edge.source].y,
+          targetX: nodePositions[edge.target].x,
+          targetY: nodePositions[edge.target].y,
+        }));
         break;
         
       case 'dijkstra':
         // Create links for the shortest path
-        const path = algorithmResults.dijkstra?.path;
-        if (!path) break;
-        
+        const path = algorithmResults.dijkstra.path;
         graphLinks = [];
         
         for (let i = 0; i < path.length - 1; i++) {
           const source = path[i];
           const target = path[i + 1];
-          
-          // Skip if source or target node positions don't exist
-          if (!nodePositions[source] || !nodePositions[target]) {
-            continue;
-          }
           
           // Find the edge between these nodes
           const edge = edges.find(e => 
@@ -426,18 +401,6 @@ const Results = () => {
   // Render the network visualization
   const renderNetworkVisualization = () => {
     const graphData = prepareGraphData();
-    
-    // Return placeholder if there's no data to show
-    if (!graphData.nodes.length) {
-      return (
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Network Visualization</h2>
-          <div className="p-8 text-center text-gray-500">
-            No network data available to visualize.
-          </div>
-        </div>
-      );
-    }
     
     return (
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">

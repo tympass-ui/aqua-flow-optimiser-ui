@@ -1,9 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGraphContext } from '../contexts/GraphContext';
 import { fordFulkerson, primMST, dijkstra } from '../utils/graphAlgorithms';
 import { toast } from 'sonner';
-import { Droplet, BarChart, CircuitBoard } from 'lucide-react';
 
 const Algorithms = () => {
   const navigate = useNavigate();
@@ -44,16 +44,16 @@ const Algorithms = () => {
   // Examples for each algorithm
   const examples = {
     fordFulkerson: {
-      nodes: 'Reservoir A,Junction B,Junction C,Tank D,Pump E,Tank F',
-      edges: 'Reservoir A Junction B 10\nReservoir A Junction C 8\nJunction B Junction C 2\nJunction B Tank D 4\nJunction B Pump E 8\nJunction C Pump E 9\nTank D Tank F 10\nPump E Tank F 10',
+      nodes: 'A,B,C,D,E,F',
+      edges: 'A B 10\nA C 8\nB C 2\nB D 4\nB E 8\nC E 9\nD F 10\nE F 10',
     },
     mst: {
-      nodes: 'Reservoir A,Junction B,Junction C,Tank D,Tank E',
-      edges: 'Reservoir A Junction B 4\nReservoir A Junction C 8\nJunction B Junction C 3\nJunction B Tank D 5\nJunction C Tank D 2\nJunction C Tank E 7\nTank D Tank E 6',
+      nodes: 'A,B,C,D,E',
+      edges: 'A B 4\nA C 8\nB C 3\nB D 5\nC D 2\nC E 7\nD E 6',
     },
     dijkstra: {
-      nodes: 'Reservoir 1,Junction 2,Junction 3,Tank 4,Tank 5,Pump 6',
-      edges: 'Reservoir 1 Junction 2 7\nReservoir 1 Junction 3 9\nReservoir 1 Pump 6 14\nJunction 2 Junction 3 10\nJunction 2 Tank 4 15\nJunction 3 Tank 4 11\nJunction 3 Pump 6 2\nTank 4 Tank 5 6\nTank 5 Pump 6 9',
+      nodes: '1,2,3,4,5,6',
+      edges: '1 2 7\n1 3 9\n1 6 14\n2 3 10\n2 4 15\n3 4 11\n3 6 2\n4 5 6\n5 6 9',
     }
   };
   
@@ -61,20 +61,6 @@ const Algorithms = () => {
   const loadExample = () => {
     setNodesInput(examples[selectedAlgorithm].nodes);
     setEdgesInput(examples[selectedAlgorithm].edges);
-  };
-  
-  // Get algorithm display name
-  const getAlgorithmDisplayName = (algorithmKey) => {
-    switch(algorithmKey) {
-      case 'fordFulkerson':
-        return 'Optimize Water Flow';
-      case 'mst':
-        return 'Cost-Effective Pipeline Design';
-      case 'dijkstra':
-        return 'Efficient Water Routing';
-      default:
-        return algorithmKey;
-    }
   };
   
   // Handle algorithm selection
@@ -95,19 +81,19 @@ const Algorithms = () => {
     try {
       // Validate inputs
       if (!nodesInput.trim()) {
-        throw new Error('Please enter at least one location.');
+        throw new Error('Please enter at least one node.');
       }
       
       if (!edgesInput.trim()) {
-        throw new Error('Please define at least one pipeline.');
+        throw new Error('Please enter at least one edge.');
       }
       
       if (!sourceNode) {
-        throw new Error('Please select a source location.');
+        throw new Error('Please select a source node.');
       }
       
       if (selectedAlgorithm !== 'mst' && !sinkNode) {
-        throw new Error('Please select a destination location.');
+        throw new Error('Please select a sink node.');
       }
       
       // Process inputs
@@ -139,7 +125,7 @@ const Algorithms = () => {
           throw new Error('Invalid algorithm selected.');
       }
       
-      toast.success('Optimization completed!');
+      toast.success('Algorithm calculation completed!');
       navigate('/results');
       
     } catch (error) {
@@ -149,27 +135,13 @@ const Algorithms = () => {
     }
   };
   
-  // Get algorithm icon
-  const getAlgorithmIcon = (algorithm) => {
-    switch(algorithm) {
-      case 'fordFulkerson':
-        return <Droplet className="h-6 w-6 text-water-dark mr-2" />;
-      case 'mst':
-        return <CircuitBoard className="h-6 w-6 text-water-dark mr-2" />;
-      case 'dijkstra':
-        return <BarChart className="h-6 w-6 text-water-dark mr-2" />;
-      default:
-        return null;
-    }
-  };
-  
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Water Network Optimization</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Optimization Algorithms</h1>
           <p className="text-gray-600 mt-2">
-            Select an optimization method and input your network data to enhance your water distribution system.
+            Select an algorithm and input your network data to optimize your water distribution system.
           </p>
         </div>
         
@@ -184,7 +156,7 @@ const Algorithms = () => {
                   : 'text-gray-600 hover:text-water-dark'
               }`}
             >
-              Optimize Water Flow
+              Ford-Fulkerson
             </button>
             <button
               onClick={() => handleAlgorithmChange('mst')}
@@ -194,7 +166,7 @@ const Algorithms = () => {
                   : 'text-gray-600 hover:text-water-dark'
               }`}
             >
-              Cost-Effective Pipeline Design
+              Minimum Spanning Tree
             </button>
             <button
               onClick={() => handleAlgorithmChange('dijkstra')}
@@ -204,7 +176,7 @@ const Algorithms = () => {
                   : 'text-gray-600 hover:text-water-dark'
               }`}
             >
-              Efficient Water Routing
+              Dijkstra's
             </button>
           </div>
         </div>
@@ -212,41 +184,32 @@ const Algorithms = () => {
         {/* Algorithm Description */}
         <div className="mb-6 p-4 bg-water-light rounded-lg text-gray-700">
           {selectedAlgorithm === 'fordFulkerson' && (
-            <div className="flex items-start">
-              <Droplet className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
-              <div>
-                <h2 className="font-semibold text-lg mb-2">Optimize Water Flow</h2>
-                <p>
-                  Maximizes the water flow capacity through your distribution network from source to destination.
-                  Ideal for ensuring sufficient water supply to all areas during peak demand periods.
-                </p>
-              </div>
+            <div>
+              <h2 className="font-semibold text-lg mb-2">Ford-Fulkerson Algorithm</h2>
+              <p>
+                Optimizes the maximum flow of water through your network from a source to a sink.
+                Useful for determining the maximum capacity of your water distribution system.
+              </p>
             </div>
           )}
           
           {selectedAlgorithm === 'mst' && (
-            <div className="flex items-start">
-              <CircuitBoard className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
-              <div>
-                <h2 className="font-semibold text-lg mb-2">Cost-Effective Pipeline Design</h2>
-                <p>
-                  Finds the most cost-effective way to connect all locations in your water network.
-                  Perfect for planning new infrastructure or optimizing existing pipeline connections.
-                </p>
-              </div>
+            <div>
+              <h2 className="font-semibold text-lg mb-2">Minimum Spanning Tree</h2>
+              <p>
+                Finds the most cost-effective way to connect all nodes in your water network.
+                Ideal for planning new infrastructure or optimizing existing connections.
+              </p>
             </div>
           )}
           
           {selectedAlgorithm === 'dijkstra' && (
-            <div className="flex items-start">
-              <BarChart className="h-6 w-6 text-water-dark mr-2 mt-1 shrink-0" />
-              <div>
-                <h2 className="font-semibold text-lg mb-2">Efficient Water Routing</h2>
-                <p>
-                  Determines the shortest path for water delivery from source to destination.
-                  Excellent for minimizing distance and improving water delivery efficiency.
-                </p>
-              </div>
+            <div>
+              <h2 className="font-semibold text-lg mb-2">Dijkstra's Algorithm</h2>
+              <p>
+                Calculates the shortest path from a source to a destination in your water network.
+                Perfect for optimizing delivery routes or minimizing water transit time.
+              </p>
             </div>
           )}
         </div>
@@ -254,7 +217,7 @@ const Algorithms = () => {
         {/* Input Form */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">Input Water Network Data</h2>
+            <h2 className="text-xl font-semibold text-gray-900">Input Data</h2>
             <button
               type="button"
               onClick={loadExample}
@@ -267,25 +230,21 @@ const Algorithms = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="nodes" className="block text-sm font-medium text-gray-700 mb-1">
-                List all locations (comma-separated)
+                Nodes (comma-separated)
               </label>
               <input
                 id="nodes"
                 type="text"
                 value={nodesInput}
                 onChange={(e) => setNodesInput(e.target.value)}
-                placeholder={
-                  selectedAlgorithm === 'fordFulkerson' ? 'e.g., Reservoir A, Junction B, Tank C, Pump D' : 
-                  selectedAlgorithm === 'mst' ? 'e.g., Reservoir A, Junction B, Tank C, Tank D' : 
-                  'e.g., Reservoir 1, Junction 2, Tank 3, Pump 4'
-                }
+                placeholder="e.g., A,B,C,D"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-water"
               />
             </div>
             
             <div className="mb-4">
               <label htmlFor="edges" className="block text-sm font-medium text-gray-700 mb-1">
-                Define pipelines (one per line: source destination {
+                Edges (one per line: source target {
                   selectedAlgorithm === 'fordFulkerson' ? 'capacity' : 
                   selectedAlgorithm === 'mst' ? 'cost' : 'distance'
                 })
@@ -295,9 +254,8 @@ const Algorithms = () => {
                 value={edgesInput}
                 onChange={(e) => setEdgesInput(e.target.value)}
                 placeholder={
-                  selectedAlgorithm === 'fordFulkerson' ? 'e.g., Reservoir A Junction B 10\nJunction B Tank C 5' : 
-                  selectedAlgorithm === 'mst' ? 'e.g., Reservoir A Junction B 4\nJunction B Tank C 2' : 
-                  'e.g., Reservoir 1 Junction 2 7\nJunction 2 Tank 3 5'
+                  selectedAlgorithm === 'fordFulkerson' ? 'e.g., A B 10\nB C 5' : 
+                  selectedAlgorithm === 'mst' ? 'e.g., A B 4\nB C 2' : 'e.g., 1 2 7\n2 3 5'
                 }
                 rows={6}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-water"
@@ -307,7 +265,7 @@ const Algorithms = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div>
                 <label htmlFor="source" className="block text-sm font-medium text-gray-700 mb-1">
-                  Source Location
+                  Source Node
                 </label>
                 <select
                   id="source"
@@ -325,7 +283,7 @@ const Algorithms = () => {
               {selectedAlgorithm !== 'mst' && (
                 <div>
                   <label htmlFor="sink" className="block text-sm font-medium text-gray-700 mb-1">
-                    Destination Location
+                    Sink Node
                   </label>
                   <select
                     id="sink"
@@ -333,7 +291,7 @@ const Algorithms = () => {
                     onChange={(e) => setSinkNode(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-water"
                   >
-                    <option value="">Select a destination</option>
+                    <option value="">Select a sink</option>
                     {nodeOptions.map(node => (
                       <option key={`sink-${node}`} value={node}>{node}</option>
                     ))}
@@ -350,7 +308,7 @@ const Algorithms = () => {
                   isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >
-                {isSubmitting ? 'Computing...' : 'Run Optimization'}
+                {isSubmitting ? 'Computing...' : 'Run Algorithm'}
               </button>
             </div>
           </form>
