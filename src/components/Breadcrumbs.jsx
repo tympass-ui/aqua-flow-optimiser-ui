@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useGraphContext } from '../contexts/GraphContext';
 import { ChevronRight } from 'lucide-react';
+import '../styles/breadcrumbs.css';
 
 const Breadcrumbs = () => {
   const location = useLocation();
@@ -30,21 +31,6 @@ const Breadcrumbs = () => {
           name = path.charAt(0).toUpperCase() + path.slice(1);
         }
         
-        // Special case for algorithms page to show selected algorithm
-        if ((path === 'water-network-optimization' || path === 'algorithms') && selectedAlgorithm) {
-          const algorithmNames = {
-            fordFulkerson: 'Optimize Water Flow',
-            mst: 'Cost-Effective Pipeline Design',
-            dijkstra: 'Efficient Water Routing'
-          };
-          breadcrumbs.push({ name, path: fullPath });
-          breadcrumbs.push({ 
-            name: algorithmNames[selectedAlgorithm] || selectedAlgorithm, 
-            path: `${fullPath}#${selectedAlgorithm}` 
-          });
-          return;
-        }
-        
         breadcrumbs.push({ name, path: fullPath });
       });
     }
@@ -55,25 +41,26 @@ const Breadcrumbs = () => {
   const breadcrumbs = getBreadcrumbs();
   
   return (
-    <div className="bg-gray-50 py-2 border-b">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center text-sm text-gray-600">
+    <div className="breadcrumbs">
+      <div className="container">
+        <div className="breadcrumbs-list">
           {breadcrumbs.map((breadcrumb, index) => (
-            <React.Fragment key={breadcrumb.path}>
-              {index > 0 && (
-                <ChevronRight className="mx-2 h-4 w-4 text-gray-400" />
-              )}
-              {index === breadcrumbs.length - 1 ? (
-                <span className="font-medium text-water-dark">{breadcrumb.name}</span>
+            <div key={breadcrumb.path} className="breadcrumb-item">
+              {index < breadcrumbs.length - 1 ? (
+                <>
+                  <Link to={breadcrumb.path} className="breadcrumb-link">
+                    {breadcrumb.name}
+                  </Link>
+                  <span className="breadcrumb-separator">
+                    <ChevronRight size={16} />
+                  </span>
+                </>
               ) : (
-                <Link 
-                  to={breadcrumb.path}
-                  className="hover:text-water-dark transition-colors"
-                >
+                <span className="breadcrumb-link breadcrumb-active">
                   {breadcrumb.name}
-                </Link>
+                </span>
               )}
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>

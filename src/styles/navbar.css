@@ -1,0 +1,79 @@
+
+.navbar {
+  background-color: var(--water-dark);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.logo-circle {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.5rem;
+  background-color: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-water {
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: var(--water);
+  border-radius: 9999px;
+  animation: flow 3s ease-in-out infinite;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: var(--water-light);
+  color: var(--water-dark);
+}
+
+.nav-link-active {
+  background-color: var(--water);
+  color: white;
+}
+
+@keyframes flow {
+  0%, 100% { transform: translateX(0%); }
+  50% { transform: translateX(2%); }
+}

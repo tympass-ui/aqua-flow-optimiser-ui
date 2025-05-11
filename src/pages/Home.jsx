@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Droplet, Target, DollarSign, Building } from 'lucide-react';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import '../styles/main.css';
 
 const Home = () => {
   return (
@@ -18,13 +18,13 @@ const Home = () => {
         </div>
         
         {/* Three-step guide */}
-        <div className="bg-water-light bg-opacity-30 rounded-lg p-6 mb-10">
+        <div className="bg-water-light rounded-lg p-6 mb-10" style={{opacity: 0.3}}>
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             How It Works
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-white border-t-4 border-t-water">
-              <CardContent className="pt-6">
+            <div className="card border-t-4 border-t-water">
+              <div className="card-content pt-6">
                 <div className="text-center mb-3">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-water-light text-water-dark mb-3">
                     <span className="text-xl font-bold">1</span>
@@ -34,11 +34,11 @@ const Home = () => {
                 <p className="text-gray-700 text-center">
                   Define your network's nodes and connections with capacity, distance, or cost attributes
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
             
-            <Card className="bg-white border-t-4 border-t-water">
-              <CardContent className="pt-6">
+            <div className="card border-t-4 border-t-water">
+              <div className="card-content pt-6">
                 <div className="text-center mb-3">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-water-light text-water-dark mb-3">
                     <span className="text-xl font-bold">2</span>
@@ -48,11 +48,11 @@ const Home = () => {
                 <p className="text-gray-700 text-center">
                   Choose from flow optimization, cost-effective design, or efficient routing solutions
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
             
-            <Card className="bg-white border-t-4 border-t-water">
-              <CardContent className="pt-6">
+            <div className="card border-t-4 border-t-water">
+              <div className="card-content pt-6">
                 <div className="text-center mb-3">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-water-light text-water-dark mb-3">
                     <span className="text-xl font-bold">3</span>
@@ -62,8 +62,8 @@ const Home = () => {
                 <p className="text-gray-700 text-center">
                   See flow patterns, cost savings, and optimal routing to improve your water network
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -74,39 +74,39 @@ const Home = () => {
           </h2>
           
           <div className="space-y-6">
-            <Card className="border-l-4 border-l-water">
-              <CardHeader className="pb-2">
+            <div className="card border-l-4 border-l-water">
+              <div className="card-header pb-2">
                 <div className="flex items-center">
                   <div className="bg-water-light rounded-full h-12 w-12 flex items-center justify-center mr-4">
                     <span className="text-water-dark text-2xl font-bold">01</span>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900">Monitor Flow and Pressure</h3>
                 </div>
-              </CardHeader>
-              <CardContent>
+              </div>
+              <div className="card-content">
                 <p className="text-gray-700">
                   See water flow rates and levels across your network. This allows for quick identification 
                   of areas with unusual flow patterns or low pressure, potentially indicating leaks or blockages.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
             
-            <Card className="border-l-4 border-l-water">
-              <CardHeader className="pb-2">
+            <div className="card border-l-4 border-l-water">
+              <div className="card-header pb-2">
                 <div className="flex items-center">
                   <div className="bg-water-light rounded-full h-12 w-12 flex items-center justify-center mr-4">
                     <span className="text-water-dark text-2xl font-bold">02</span>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900">Network Optimization</h3>
                 </div>
-              </CardHeader>
-              <CardContent>
+              </div>
+              <div className="card-content">
                 <p className="text-gray-700">
                   Apply powerful graph algorithms to optimize your water distribution network, finding the most efficient 
                   paths, minimizing costs, and maximizing flow to all areas of your system.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ const Home = () => {
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="card shadow-md overflow-hidden">
               <div className="p-6">
                 <div className="w-16 h-16 rounded-full bg-water-light flex items-center justify-center mb-4 mx-auto">
                   <Droplet className="h-8 w-8 text-water" />
@@ -128,9 +128,9 @@ const Home = () => {
                   resources and saving on water bills.
                 </p>
               </div>
-            </Card>
+            </div>
             
-            <Card className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="card shadow-md overflow-hidden">
               <div className="p-6">
                 <div className="w-16 h-16 rounded-full bg-water-light flex items-center justify-center mb-4 mx-auto">
                   <Target className="h-8 w-8 text-water" />
@@ -141,9 +141,9 @@ const Home = () => {
                   leading to reduced overall maintenance costs.
                 </p>
               </div>
-            </Card>
+            </div>
             
-            <Card className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="card shadow-md overflow-hidden">
               <div className="p-6">
                 <div className="w-16 h-16 rounded-full bg-water-light flex items-center justify-center mb-4 mx-auto">
                   <DollarSign className="h-8 w-8 text-water" />
@@ -154,7 +154,7 @@ const Home = () => {
                   schedules, helping you prioritize investments.
                 </p>
               </div>
-            </Card>
+            </div>
           </div>
         </div>
         
@@ -216,7 +216,7 @@ const Home = () => {
           <div className="mt-8 text-center">
             <Link
               to="/water-network-optimization"
-              className="inline-flex items-center px-6 py-3 bg-water hover:bg-water-dark text-white font-medium rounded-lg transition-colors"
+              className="btn"
             >
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -224,7 +224,7 @@ const Home = () => {
           </div>
         </div>
         
-        <div className="bg-water-light bg-opacity-30 rounded-lg p-6">
+        <div className="bg-water-light rounded-lg p-6" style={{opacity: 0.3}}>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
             Why Optimize Water Distribution?
           </h2>
